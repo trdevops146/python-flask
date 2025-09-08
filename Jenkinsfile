@@ -9,8 +9,11 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'ls -la'
-                sh 'python3 --version'
+                sh '''
+                    python3 --version
+                    pip install build
+                    python3 -m build
+                '''
             }
         }
     }
