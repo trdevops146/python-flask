@@ -11,8 +11,10 @@ pipeline {
             steps {
                 sh '''
                     python3 --version
-                    pip install build
-                    python3 -m build
+                    sudo apt update
+                    sudo apt install python3-pip -y
+                    pip3 install build
+                    python3 . -m build
                 '''
             }
         }
