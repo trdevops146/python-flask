@@ -18,11 +18,11 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh """
-                        sudo docker build -t trdevops/python-app:${env.BUILD_NUMBER} .
+                        docker build -t trdevops/python-app:${env.BUILD_NUMBER} .
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        sudo docker push trdevops/python-app:${env.BUILD_NUMBER}
-                        sudo docker rm -f python-app || true
-                        sudo docker run -d --name python-app -p 5000:5000 trdevops/python-app:${env.BUILD_NUMBER}
+                        docker push trdevops/python-app:${env.BUILD_NUMBER}
+                        docker rm -f python-app || true
+                        docker run -d --name python-app -p 5000:5000 trdevops/python-app:${env.BUILD_NUMBER}
                     """
                 }
             }
