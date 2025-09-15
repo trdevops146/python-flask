@@ -6,7 +6,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/trdevops146/python-flask.git'
             }
         }
-        stage('Update the packages on the jenkins agent'){
+        stage('Update the packages on the jenkins Agent'){
             steps{
                 sh '''
                 sudo apt update
